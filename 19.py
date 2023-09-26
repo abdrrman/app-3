@@ -65,8 +65,8 @@ with st.form(key='file2'):
             with tempfile.NamedTemporaryFile(delete=False) as temp_file:
                 temp_file.write(uploaded_file.read())
                 file_path2 = temp_file.name # it shows the file path
-        else:
-            file_path2 = ''
+    else:
+        file_path2 = ''
 
 #Load the second excel file as Document from the file path
 def load_doc2(file_path2):
