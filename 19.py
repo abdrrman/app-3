@@ -36,10 +36,9 @@ with st.form(key='file1'):
             with tempfile.NamedTemporaryFile(delete=False) as temp_file:
                 temp_file.write(uploaded_file.read())
                 file_path1 = temp_file.name # it shows the file path
-                st.session_state['file_path1'] = file_path1
-        else:
-            file_path1 = ''
-            st.session_state['file_path1'] = file_path1
+    else:
+        file_path1 = ''
+          
 
 #Load the first excel file as Document from the file path
 def load_doc1(file_path1):
@@ -66,10 +65,8 @@ with st.form(key='file2'):
             with tempfile.NamedTemporaryFile(delete=False) as temp_file:
                 temp_file.write(uploaded_file.read())
                 file_path2 = temp_file.name # it shows the file path
-                st.session_state['file_path2'] = file_path2
         else:
             file_path2 = ''
-            st.session_state['file_path2'] = file_path2
 
 #Load the second excel file as Document from the file path
 def load_doc2(file_path2):
