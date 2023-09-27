@@ -51,7 +51,7 @@ with st.form(key='HR_GPT'):
 
     st.title('HR GPT')
 
-    uploaded_file = st.file_uploader("Upload Your CV", type=["txt"], key='cv_file_path')
+    uploaded_file = st.file_uploader("Upload Your CV", type=["pdf"], key='cv_file_path')
 
     if uploaded_file is not None:
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
