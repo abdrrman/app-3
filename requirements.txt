@@ -10,3 +10,4 @@ pdf2image
 pdfminer
 pdfminer-six
 openpyxl
+youtube-transcript-api
