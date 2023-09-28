@@ -122,4 +122,4 @@ with st.form(key='website_generator'):
             website = ""
         #Display the generated website to the user
         if website:
-            st.markdown(website)
+            st.markdown(website, unsafe_allow_html=True)
