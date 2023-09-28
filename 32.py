@@ -27,7 +27,7 @@ openai_api_key = st.sidebar.text_input(
 
 st.title('Hackla')
 
-def websiteGenerator(header_image,cta_text,concept_intro,mission_statement,service_overview,customer_reviews,footer_links,menu_items,language_selection,login_register,detailed_service_description,online_booking,booking_process_guide,faq,platform_history,team_intro,mission_vision,contact_form,contact_info,google_maps,social_media_login,user_dashboard,invoice_history,profile_settings,subscription_model,live_chat_support,search_function,tip_feature,rating_system,blog_posts):
+def websiteGenerator(header_image,cta_text,concept_intro,mission_statement,service_overview,customer_reviews,footer_links,language_selection,login_register,detailed_service_description,online_booking,booking_process_guide,faq,platform_history,team_intro,mission_vision,contact_form,contact_info,google_maps,social_media_login,user_dashboard,invoice_history,profile_settings,subscription_model,live_chat_support,search_function,tip_feature,rating_system,blog_posts):
     chat = ChatOpenAI(
         model="gpt-3.5-turbo-16k",
         openai_api_key=openai_api_key,
@@ -35,14 +35,14 @@ def websiteGenerator(header_image,cta_text,concept_intro,mission_statement,servi
     )
     system_template = """You are a website generator. Your task is to generate a website with the following features: header image, call to action text, concept introduction, mission statement, service overview, customer reviews, footer links, menu items, language selection, login/register, detailed service description, online booking, booking process guide, FAQ, platform history, team introduction, mission and vision, contact form, contact information, Google maps, social media login, user dashboard, invoice history, profile settings, subscription model, live chat support, search function, tip feature, rating system, and blog posts."""
     system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
-    human_template = """Please generate a website with the following features: Header Image: {header_image}, CTA Text: {cta_text}, Concept Intro: {concept_intro}, Mission Statement: {mission_statement}, Service Overview: {service_overview}, Customer Reviews: {customer_reviews}, Footer Links: {footer_links}, Menu Items: {menu_items}, Language Selection: {language_selection}, Login/Register: {login_register}, Detailed Service Description: {detailed_service_description}, Online Booking: {online_booking}, Booking Process Guide: {booking_process_guide}, FAQ: {faq}, Platform History: {platform_history}, Team Intro: {team_intro}, Mission and Vision: {mission_vision}, Contact Form: {contact_form}, Contact Info: {contact_info}, Google Maps: {google_maps}, Social Media Login: {social_media_login}, User Dashboard: {user_dashboard}, Invoice History: {invoice_history}, Profile Settings: {profile_settings}, Subscription Model: {subscription_model}, Live Chat Support: {live_chat_support}, Search Function: {search_function}, Tip Feature: {tip_feature}, Rating System: {rating_system}, Blog Posts: {blog_posts}."""
+    human_template = """Please generate a website with the following features: Header Image: {header_image}, CTA Text: {cta_text}, Concept Intro: {concept_intro}, Mission Statement: {mission_statement}, Service Overview: {service_overview}, Customer Reviews: {customer_reviews}, Footer Links: {footer_links}, Language Selection: {language_selection}, Login/Register: {login_register}, Detailed Service Description: {detailed_service_description}, Online Booking: {online_booking}, Booking Process Guide: {booking_process_guide}, FAQ: {faq}, Platform History: {platform_history}, Team Intro: {team_intro}, Mission and Vision: {mission_vision}, Contact Form: {contact_form}, Contact Info: {contact_info}, Google Maps: {google_maps}, Social Media Login: {social_media_login}, User Dashboard: {user_dashboard}, Invoice History: {invoice_history}, Profile Settings: {profile_settings}, Subscription Model: {subscription_model}, Live Chat Support: {live_chat_support}, Search Function: {search_function}, Tip Feature: {tip_feature}, Rating System: {rating_system}, Blog Posts: {blog_posts}."""
     human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
     chat_prompt = ChatPromptTemplate.from_messages(
         [system_message_prompt, human_message_prompt]
     )
 
     chain = LLMChain(llm=chat, prompt=chat_prompt)
-    result = chain.run(header_image=header_image, cta_text=cta_text, concept_intro=concept_intro, mission_statement=mission_statement, service_overview=service_overview, customer_reviews=customer_reviews, footer_links=footer_links, menu_items=menu_items, language_selection=language_selection, login_register=login_register, detailed_service_description=detailed_service_description, online_booking=online_booking, booking_process_guide=booking_process_guide, faq=faq, platform_history=platform_history, team_intro=team_intro, mission_vision=mission_vision, contact_form=contact_form, contact_info=contact_info, google_maps=google_maps, social_media_login=social_media_login, user_dashboard=user_dashboard, invoice_history=invoice_history, profile_settings=profile_settings, subscription_model=subscription_model, live_chat_support=live_chat_support, search_function=search_function, tip_feature=tip_feature, rating_system=rating_system, blog_posts=blog_posts)
+    result = chain.run(header_image=header_image, cta_text=cta_text, concept_intro=concept_intro, mission_statement=mission_statement, service_overview=service_overview, customer_reviews=customer_reviews, footer_links=footer_links, language_selection=language_selection, login_register=login_register, detailed_service_description=detailed_service_description, online_booking=online_booking, booking_process_guide=booking_process_guide, faq=faq, platform_history=platform_history, team_intro=team_intro, mission_vision=mission_vision, contact_form=contact_form, contact_info=contact_info, google_maps=google_maps, social_media_login=social_media_login, user_dashboard=user_dashboard, invoice_history=invoice_history, profile_settings=profile_settings, subscription_model=subscription_model, live_chat_support=live_chat_support, search_function=search_function, tip_feature=tip_feature, rating_system=rating_system, blog_posts=blog_posts)
     return result # returns string   
 
 with st.form(key='website_generator'):
@@ -67,8 +67,6 @@ with st.form(key='website_generator'):
     customer_reviews = st.text_area("Enter customer reviews")
     #Get footer links from the user
     footer_links = st.text_input("Enter footer links")
-    #Get menu items from the user
-    menu_items = st.multiselect("Select menu items")
     #Get language selection from the user
     language_selection = st.selectbox("Select the language", ["English", "Spanish", "French", "German", "Italian"])
     #Get login/register option from the user
@@ -118,12 +116,10 @@ with st.form(key='website_generator'):
         if not openai_api_key.startswith('sk-'):
             st.warning('Please enter your OpenAI API key!', icon='⚠')
             website = ""
-        elif header_image and cta_text and concept_intro and mission_statement and service_overview and customer_reviews and footer_links and menu_items and language_selection and login_register and detailed_service_description and online_booking and booking_process_guide and faq and platform_history and team_intro and mission_vision and contact_form and contact_info and google_maps and social_media_login and user_dashboard and invoice_history and profile_settings and subscription_model and live_chat_support and search_function and tip_feature and rating_system and blog_posts:
-            website = websiteGenerator(header_image,cta_text,concept_intro,mission_statement,service_overview,customer_reviews,footer_links,menu_items,language_selection,login_register,detailed_service_description,online_booking,booking_process_guide,faq,platform_history,team_intro,mission_vision,contact_form,contact_info,google_maps,social_media_login,user_dashboard,invoice_history,profile_settings,subscription_model,live_chat_support,search_function,tip_feature,rating_system,blog_posts)
+        elif header_image and cta_text and concept_intro and mission_statement and service_overview and customer_reviews and footer_links and language_selection and login_register and detailed_service_description and online_booking and booking_process_guide and faq and platform_history and team_intro and mission_vision and contact_form and contact_info and google_maps and social_media_login and user_dashboard and invoice_history and profile_settings and subscription_model and live_chat_support and search_function and tip_feature and rating_system and blog_posts:
+            website = websiteGenerator(header_image,cta_text,concept_intro,mission_statement,service_overview,customer_reviews,footer_links,language_selection,login_register,detailed_service_description,online_booking,booking_process_guide,faq,platform_history,team_intro,mission_vision,contact_form,contact_info,google_maps,social_media_login,user_dashboard,invoice_history,profile_settings,subscription_model,live_chat_support,search_function,tip_feature,rating_system,blog_posts)
         else:
             website = ""
         #Display the generated website to the user
         if website:
             st.markdown(website)
-    else:
-        website = ""
