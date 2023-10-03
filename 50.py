@@ -61,5 +61,4 @@ with st.form(key='web_search'):
             search_results = ""
         #Under the st.form_submit_button, show the results.
         if search_results:
-            for result in search_results:
-                st.write(result)
+            st.markdown(search_results)
