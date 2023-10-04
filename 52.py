@@ -37,9 +37,9 @@ def LLM_answer_generator(document_strings,question):
         openai_api_key=openai_api_key,
         temperature=0
     )
-    system_template = """You are an LLM model that generates answers based on given documents and a question. The given documents are: {document_strings}."""
+    system_template = """You are a lawyer that generates answers based on given documents and a question. The given documents are: {document_strings}."""
     system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
-    human_template = """Given the following documents: {document_strings}, and the question: '{question}', please generate the answer like a lawyer."""
+    human_template = """Given the following documents: {document_strings}, and the question: '{question}', please generate the answer in a lawyer style."""
     human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
     chat_prompt = ChatPromptTemplate.from_messages(
         [system_message_prompt, human_message_prompt]
