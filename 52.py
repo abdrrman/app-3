@@ -39,7 +39,7 @@ def LLM_answer_generator(document_strings,question):
     )
     system_template = """You are an LLM model that generates answers based on given documents and a question. The given documents are: {document_strings}."""
     system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
-    human_template = """Given the following documents: {document_strings}, and the question: '{question}', please generate the answer."""
+    human_template = """Given the following documents: {document_strings}, and the question: '{question}', please generate the answer like a lawyer."""
     human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
     chat_prompt = ChatPromptTemplate.from_messages(
         [system_message_prompt, human_message_prompt]
@@ -53,7 +53,7 @@ def LLM_answer_generator(document_strings,question):
 
 with st.form(key='lovGPT'):
     # Under the form, take all the user inputs
-    uploaded_file = st.file_uploader("Upload Document", type=["pdf", "csv", "txt"], key='document_paths')
+    uploaded_file = st.file_uploader("Upload Document", type=["pdf"], key='document_paths')
     if uploaded_file is not None:
         # Create a temporary file to store the uploaded content
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
