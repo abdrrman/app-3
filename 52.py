@@ -73,6 +73,7 @@ with st.form(key='lovGPT'):
     
     # If form is submitted by st.form_submit_button run the logic
     if submit_button:
+        document_strings = "".join([doc.page_content for doc in documents])
         if not openai_api_key.startswith('sk-'):
             st.warning('Please enter your OpenAI API key!', icon='⚠')
             answer = ""
