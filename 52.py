@@ -27,7 +27,7 @@ openai_api_key = st.sidebar.text_input(
 ### Copy and paste all the functions as is
 
 def load_documents(document_paths):
-    loader = TextLoader(document_paths)
+    loader = UnstructuredPDFLoader(document_paths)
     docs = loader.load()
     return docs
 
