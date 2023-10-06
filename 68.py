@@ -83,4 +83,4 @@ with st.form(key='seo_blog_post'):
             st.markdown(blog_post)
         #Display the uploaded images to the user
         if images:
-            st.image(cv2.imread(images), use_column_width=True)
+            st.image(images, use_column_width=True)

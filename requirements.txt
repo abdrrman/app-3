@@ -11,4 +11,3 @@ pdfminer
 pdfminer-six
 openpyxl
 youtube-transcript-api
-opencv-python
