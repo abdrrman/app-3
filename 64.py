@@ -32,7 +32,7 @@ def load_web_page_content(web_page_address):
     return docs
 
 def summarize_content(docs):
-    llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-16k")
+    llm = ChatOpenAI(openai_api_key=openai_api_key,temperature=0, model_name="gpt-3.5-turbo-16k")
     chain = load_summarize_chain(llm, chain_type="stuff")
     return chain.run(docs)
 
@@ -51,7 +51,10 @@ with st.form(key='web_summary'):
         # Convert the web page content to a string
         web_string = "".join([doc.page_content for doc in web_content])
         # Summarize the web page content
-        if web_content:
+        if not openai_api_key.startswith('sk-'):
+            st.warning('Please enter your OpenAI API key!', icon='⚠')
+            summarized_content = ""
+        elif web_content:
             summarized_content = summarize_content(web_content)
         else:
             summarized_content = ""
