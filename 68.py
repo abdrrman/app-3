@@ -15,7 +15,6 @@ from langchain.docstore.document import Document
 import time
 from langchain.memory import ConversationBufferMemory
 from langchain.chains.question_answering import load_qa_chain
-import cv2
 
 # Get openai_api_key
 openai_api_key = st.sidebar.text_input(
