@@ -15,6 +15,7 @@ from langchain.docstore.document import Document
 import time
 from langchain.memory import ConversationBufferMemory
 from langchain.chains.question_answering import load_qa_chain
+import cv2
 
 # Get openai_api_key
 openai_api_key = st.sidebar.text_input(
@@ -82,5 +83,4 @@ with st.form(key='seo_blog_post'):
             st.markdown(blog_post)
         #Display the uploaded images to the user
         if images:
-            for image in images:
-                st.image(image, use_column_width=True)
+            st.image(cv2.imread(images), use_column_width=True)
