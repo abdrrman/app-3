@@ -20,7 +20,6 @@ openai_api_key = st.sidebar.text_input(
 )
 
 st.title('AI Workers for Hire')
-os.environ['SERPER_API_KEY'] = "ad9a1ff593f1ff9ae87881611f65c78182355d92"
 # Get message from the user
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
