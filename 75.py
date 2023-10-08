@@ -54,12 +54,9 @@ def find_celebrity_age(celebrity_name):
 
 
 with st.form(key='age_finder'):
-    # Under the form, take all the user inputs
-	celebrity_name = st.text_input("Enter the name of the celebrity")
-	submit_button = st.form_submit_button(label='Find Celebrity Age')
-    # If form is submitted by st.form_submit_button run the logic
+    celebrity_name = st.text_input("Enter the name of the celebrity")
+    submit_button = st.form_submit_button(label='Find Celebrity Age')
     if submit_button:
-        ######## Call the functions
         if not openai_api_key.startswith('sk-'):
             st.warning('Please enter your OpenAI API key!', icon='⚠')
             celebrity_age = ""
