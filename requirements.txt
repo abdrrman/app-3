@@ -11,3 +11,4 @@ pdfminer
 pdfminer-six
 openpyxl
 youtube-transcript-api
+numexpr
