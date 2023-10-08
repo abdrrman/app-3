@@ -24,7 +24,7 @@ def find_celebrity_age(celebrity_name):
     search_input = "Find the age of the celebrity {celebrity_name} on the internet.".format(
         celebrity_name=celebrity_name)
     search = GoogleSerperAPIWrapper()
-    llm = OpenAI(temperature=0)
+    llm = OpenAI(openai_api_key=openai_api_key, temperature=0)
     llm_math_chain = LLMMathChain.from_llm(llm=llm, verbose=True)
     tools = [
         Tool(
@@ -38,7 +38,7 @@ def find_celebrity_age(celebrity_name):
             description="useful for when you need to answer questions about math"
         ),
     ]
-    model = ChatOpenAI(temperature=0, model_name="gpt-4")
+    model = ChatOpenAI(openai_api_key=openai_api_key, temperature=0, model_name="gpt-4")
     planner = load_chat_planner(model)
     executor = load_agent_executor(model, tools, verbose=True)
     agent = PlanAndExecute(planner=planner, executor=executor, verbose=True)
@@ -68,5 +68,5 @@ with st.form(key='age_finder'):
         ######## Show the results
         if celebrity_age is not None and len(str(celebrity_age)) > 0:
             #Under the st.form_submit_button, show the results.
-            st.write("The celebrity is", celebrity_age, "years old")
+            st.write(celebrity_age)
 ############################################################# END OF THE CODE
