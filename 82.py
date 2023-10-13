@@ -5,7 +5,7 @@ from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts.chat import (
     ChatPromptTemplate, HumanMessagePromptTemplate, SystemMessagePromptTemplate)
-st.title('Gym God')
+st.title('Gym Buddy')
 # Get openai_api_key
 st.sidebar.markdown("""# How to use
 
