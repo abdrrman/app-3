@@ -89,14 +89,17 @@ Legal Expert:'''
 )
 memory = ConversationBufferMemory(
     memory_key="chat_history", input_key="legal_question_and_risk_assessment", chat_memory=msgs, return_messages=True)
-llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k",
-                 openai_api_key=openai_api_key, temperature=0)
-chat_llm_chain = LLMChain(
-    llm=llm,
-    prompt=prompt,
-    verbose=False,
-    memory=memory,
-)
+if openai_api_key:
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k",
+                    openai_api_key=openai_api_key, temperature=0)
+    chat_llm_chain = LLMChain(
+        llm=llm,
+        prompt=prompt,
+        verbose=False,
+        memory=memory,
+    )
+else:
+    chat_llm_chain = ''
 
 
 if not openai_api_key.startswith('sk-'):
